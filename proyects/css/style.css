@@ -1,0 +1,21 @@
+body {
+margin: 0;
+padding: 0;
+background-color:silver;
+
+
+}
+
+.fondo{
+    width:1270px;
+    padding: 20px;
+    background-color: aliceblue;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
