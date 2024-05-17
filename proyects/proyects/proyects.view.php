@@ -39,6 +39,7 @@
             <th>Estado</th>
             <th>Miembro del equipo</th>
             <th>Editar</th>
+            <th>Detalles</th>
           </tr>
         </thead>
       </table>
@@ -83,6 +84,26 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal Detalle Proyecto -->
+   <div class="modal fade" id="modalDetalleProyecto" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="detalleModalLabel">Detalles del Proyecto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Detalles del proyecto se llenarán dinámicamente -->
+          <h5>Codigo del Proyecto: <span id="detalle_codigo_proyecto"></span></h5>
+          <p><strong>Descripción:</strong> <span id="detalle_descripcion"></span></p>
+          <p><strong>Fecha de Inicio:</strong> <span id="detalle_fecha_inicio"></span></p>
+          <p><strong>Estado:</strong> <span id="detalle_estado"></span></p>
+          <p><strong>Miembro del Equipo:</strong> <span id="detalle_nombre_miembro"></span></p>
+        </div>
       </div>
     </div>
   </div>
@@ -182,6 +203,25 @@
             $('.modal-title').text("Editar Proyecto");
             $("#action").val("Editar").removeClass('btn-primary').addClass('btn-success');
             $("#operacion").val("editar");
+          }
+        });
+      });
+
+       // Nuevo código para mostrar detalles del proyecto
+       $(document).on('click', '.detalle', function() {
+        var codigo_proyecto = $(this).attr("id");
+        $.ajax({
+          url: "proyects.controller.php",
+          method: "POST",
+          data: {codigo_proyecto: codigo_proyecto, operacion: 'obtener_detalle'},
+          dataType: "json",
+          success: function(data) {
+            $('#modalDetalleProyecto').modal('show');
+            $("#detalle_codigo_proyecto").text(data.codigo_proyecto);
+            $("#detalle_descripcion").text(data.descripcion);
+            $("#detalle_fecha_inicio").text(data.fecha_inicio);
+            $("#detalle_estado").text(data.estado);
+            $("#detalle_nombre_miembro").text(data.nombre_miembro);
           }
         });
       });

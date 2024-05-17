@@ -132,9 +132,10 @@ function obtener_registros($conexion) {
             $sub_array[] = $fila["estado"];
             $sub_array[] = $fila["nombre_miembro"];
             $sub_array[] = '<div class="text-center"><button type="button" name="editar" id="' . $fila["codigo_proyecto"] . '" class="btn btn-success btn-xs editar"><i class="bi bi-pencil-fill"></i></button></div>';
-            //$sub_array[] = '<div class="text-center"><button type="button" name="borrar" id="' . $fila["codigo_proyecto"] . '" class="btn btn-danger btn-xs borrar"><i class="bi bi-trash-fill"></i></button></div>';
-
+            $sub_array[] = '<div class="text-center"><button type="button" name="detalle" id="' . $fila["codigo_proyecto"] . '" class="btn btn-info btn-xs detalle"><i class="bi bi-info-circle-fill"></i></button></div>';
             $datos[] = $sub_array;
+        }
+        
         }
 
         $salida = array(
